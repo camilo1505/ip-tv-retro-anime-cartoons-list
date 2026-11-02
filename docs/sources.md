@@ -9,26 +9,36 @@ segment is a real video segment (not an empty file, not an HTML error page).
 Group names in the playlists are in English; channel names are kept as published by each
 source.
 
+## Conventions
+
+- **Status** reflects the latest verification date shown in each table: `Working`,
+  `Degraded` (plays but unstable) or `Dead` (fails).
+- **Type** values: `Official` (published by the broadcaster), `FAST channel` (commercial
+  free ad-supported service), `Community` (fan-run) and `Restream` (third-party relay of
+  another signal).
+- **Country** is the country declared by the source catalog; it is not necessarily where
+  the stream is hosted.
+
 ---
 
 ## `lists/locomotion-anime.m3u` (14 channels)
 
-| # | Channel | Source | Status | Notes |
-| --- | --- | --- | --- | --- |
-| 1 | Locomotion | SerenoTV "Segunda señal" (`lbgo.bozztv.com`) | Working | Alternate live feed, 720p/30, ~4.3 Mbps, AAC. It is a different feed from the official one. |
-| 2 | Locomotion (official fallback) | `146.19.49.197:81/live/loco.m3u8` | Working, but loops | Official feed. All official variants share the same encoder, so they repeat the same day. Kept only as a fallback. |
-| 3 | AnimeZoneTV | `animezonetv.com/hls/stream.m3u8` | Working | Related to the Locomotion portal. |
-| 4 | Anime XTV | `animezonetv.net:81/live_hls/animetest/index.m3u8` | Working | Alternate server from the same project. |
-| 5 | Pluto TV Anime (LatAm) | `jmp2.uk/plu-5dcde17bf6591d0009839e02.m3u8` | Working | Official Pluto TV channel through the jmp2.uk redirector. |
-| 6 | One Piece (LatAm) | `jmp2.uk/plu-5ff4b9ccf938f8000779eb99.m3u8` | Working | Official Pluto TV channel. |
-| 7 | Naruto (Spanish) | `jmp2.uk/plu-5ee92e72fb286e0007285fec.m3u8` | Working | Official Pluto TV channel. |
-| 8 | Detective Conan | `jmp2.uk/plu-629a066860ef810008267b70.m3u8` | Working | Official Pluto TV channel. |
-| 9 | MAX Anime | `cdnlive.klicgo.net/maxanime/live/playlist.m3u8` | Working | Community channel. |
-| 10 | Tooncast | `45.134.141.161:2200/ARG/Tooncast/index.m3u8` | Working | Third-party restream. |
-| 11 | Tooncast (backup) | `190.61.42.218:9000/play/a06i/index.m3u8` | Working | Third-party restream. |
-| 12 | Nickelodeon Clásico | `jmp2.uk/plu-6824cda00101510f9eeaa011.m3u8` | Working | Official Pluto TV channel. |
-| 13 | Nickelodeon Toons (LatAm) | `jmp2.uk/plu-645952687cb4b100084ed52e.m3u8` | Working | Official Pluto TV channel. |
-| 14 | Cartoon Network (LatAm) | `158.172.217.18:8000/play/a03a/index.m3u8` | Working | Third-party restream. |
+| # | Channel | Language | Type | Source | Status (2026-11-02) | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Locomotion | Spanish | Alternate restream | SerenoTV "Segunda señal" (`lbgo.bozztv.com`) | Working | Alternate live feed, 720p/30, ~4.3 Mbps, AAC. It is a different feed from the official one. |
+| 2 | Locomotion (official fallback) | Spanish | Official | `146.19.49.197:81/live/loco.m3u8` | Working, but loops | Official feed. All official variants share the same encoder, so they repeat the same day. Kept only as a fallback. |
+| 3 | AnimeZoneTV | Spanish | Community | `animezonetv.com/hls/stream.m3u8` | Working | Related to the Locomotion portal. |
+| 4 | Anime XTV | Spanish | Community | `animezonetv.net:81/live_hls/animetest/index.m3u8` | Working | Alternate server from the same project. |
+| 5 | Pluto TV Anime (LatAm) | Spanish | Official (via `jmp2.uk`) | `jmp2.uk/plu-5dcde17bf6591d0009839e02.m3u8` | Working | Official Pluto TV channel through the jmp2.uk redirector. |
+| 6 | One Piece (LatAm) | Spanish | Official (via `jmp2.uk`) | `jmp2.uk/plu-5ff4b9ccf938f8000779eb99.m3u8` | Working | Official Pluto TV channel. |
+| 7 | Naruto (Spanish) | Spanish | Official (via `jmp2.uk`) | `jmp2.uk/plu-5ee92e72fb286e0007285fec.m3u8` | Working | Official Pluto TV channel. |
+| 8 | Detective Conan | Spanish | Official (via `jmp2.uk`) | `jmp2.uk/plu-629a066860ef810008267b70.m3u8` | Working | Official Pluto TV channel. |
+| 9 | MAX Anime | — | Community | `cdnlive.klicgo.net/maxanime/live/playlist.m3u8` | Working | Community channel. |
+| 10 | Tooncast | Spanish | Restream | `45.134.141.161:2200/ARG/Tooncast/index.m3u8` | Working | Third-party restream. |
+| 11 | Tooncast (backup) | Spanish | Restream | `190.61.42.218:9000/play/a06i/index.m3u8` | Working | Third-party restream; use if entry 10 fails. |
+| 12 | Nickelodeon Clásico | Spanish | Official (via `jmp2.uk`) | `jmp2.uk/plu-6824cda00101510f9eeaa011.m3u8` | Working | Official Pluto TV channel. |
+| 13 | Nickelodeon Toons (LatAm) | Spanish | Official (via `jmp2.uk`) | `jmp2.uk/plu-645952687cb4b100084ed52e.m3u8` | Working | Official Pluto TV channel. |
+| 14 | Cartoon Network (LatAm) | Spanish | Restream | `158.172.217.18:8000/play/a03a/index.m3u8` | Working | Third-party restream. |
 
 ### Locomotion background
 
@@ -53,15 +63,18 @@ source.
 
 All channels are official Pluto TV feeds served through `jmp2.uk`:
 
-| Channel | Pluto channel id |
-| --- | --- |
-| ANIME x HIDIVE | `6793eaa4bc03978b9bc63db1` |
-| Pluto TV Anime Movies | `67ed8f7e443f0671bc2b2368` |
-| Pluto TV Anime CA | `68d25b620a0f3829b116bb6f` |
-| Pluto TV Anime Ação | `604b79c558393100078faeef` |
-| Naruto Shippuden | `64c92f965580090008084968` |
-| It's Anime | `6a4fda4538f47f0af402bdb0` |
-| Big A Anime | `6a3c5fa46276c42ac6726b27` |
+| Channel | Pluto channel id | Status (2026-11-02) |
+| --- | --- | --- |
+| ANIME x HIDIVE | `6793eaa4bc03978b9bc63db1` | Working |
+| Pluto TV Anime Movies | `67ed8f7e443f0671bc2b2368` | Working |
+| Pluto TV Anime CA | `68d25b620a0f3829b116bb6f` | Working |
+| Pluto TV Anime Ação | `604b79c558393100078faeef` | Working |
+| Naruto Shippuden | `64c92f965580090008084968` | Working |
+| It's Anime | `6a4fda4538f47f0af402bdb0` | Working |
+| Big A Anime | `6a3c5fa46276c42ac6726b27` | Working |
+
+Language varies by channel and region; do not assume Spanish. Check the source before
+adding a channel to a Spanish-oriented list.
 
 EPG: `https://i.mjh.nz/PlutoTV/us.xml`.
 
@@ -75,23 +88,23 @@ directory: the playlists point directly at the CDN that serves each channel (mos
 `frequency.stream`). They were verified with a real segment at the time of writing, but
 they are community streams and can disappear.
 
-| Channel | Country | Language | Content | URL |
-| --- | --- | --- | --- | --- |
-| Retro Magico | Argentina | Spanish | 80s/90s cartoons, a tribute to Magic Kids | `live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8` |
-| Retro Toons | Argentina | Spanish | Retro cartoons | `183.bozztv.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8` |
-| Clasicos Animados | Costa Rica | Spanish | 80s/90s animated series | `live20.bozztv.com/giatvplayout7/giatv-209599/index.m3u8` |
-| Magic Kids OK | Argentina | Spanish | Argentine kids channel, nostalgic | `kali.vdopanel.com:3957/stream/play.m3u8` |
-| Canal Retro TV | Costa Rica | Spanish | Retro programming in Spanish | `stream.enlineatv.net/hls/retrotv/index.m3u8` |
-| Dragon Ball | Costa Rica | Spanish | Dragon Ball Z 24/7 | `live20.bozztv.com/giatv/giatv-dball/dball/playlist.m3u8` |
-| X-Men (1992) | Argentina | Spanish | 90s X-Men animated series | `live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8` |
-| Delmi TV | Spain | Spanish | Anime and cartoons | `live20.bozztv.com/giatvplayout7/giatv-210634/playlist.m3u8` |
-| Delmi Channel | Spain | Spanish | Anime and cartoons | `live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8` |
-| EnerGeek | Chile | Spanish | 80s/90s/2000s series and anime | `cl-2.backend.energeek.cl/bkp/egretroweb/index.m3u8?token=S3r3noTV` |
-| EnerGeek Fan | Chile | Spanish | Cartoons, anime, live-action and movies | `cl-2.backend.energeek.cl/bkp/egfanweb/index.m3u8?token=S3r3noTV` |
-| Retro Cartoon | Brazil | Portuguese | 1940s-1980s classic cartoons | `stmv1.video.brstream.com.br/retrotv/retrotv/playlist.m3u8` |
-| Otaku Sign TV | Brazil | Portuguese | Anime 24/7 | `stmv1.srvif.com/anime/anime/playlist.m3u8` |
-| FilmRise Anime | United States | English | Anime movies and series | `dvu7aia8rjlfm.cloudfront.net/master.m3u8` |
-| RetroCrush | United States | English | Retro anime | `linear-899.frequency.stream/dist/cineverse/899/hls/master/playlist.m3u8` |
+| Channel | Country | Language | Type | Content | Status (2026-11-02) | URL |
+| --- | --- | --- | --- | --- | --- | --- |
+| Retro Magico | Argentina | Spanish | Restream | 80s/90s cartoons, a tribute to Magic Kids | Working | `live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8` |
+| Retro Toons | Argentina | Spanish | Restream | Retro cartoons | Working | `183.bozztv.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8` |
+| Clasicos Animados | Costa Rica | Spanish | Restream | 80s/90s animated series | Working | `live20.bozztv.com/giatvplayout7/giatv-209599/index.m3u8` |
+| Magic Kids OK | Argentina | Spanish | Restream | Argentine kids channel, nostalgic | Working | `kali.vdopanel.com:3957/stream/play.m3u8` |
+| Canal Retro TV | Costa Rica | Spanish | Restream | Retro programming in Spanish | Working | `stream.enlineatv.net/hls/retrotv/index.m3u8` |
+| Dragon Ball | Costa Rica | Spanish | Restream | Dragon Ball Z 24/7 | Working | `live20.bozztv.com/giatv/giatv-dball/dball/playlist.m3u8` |
+| X-Men (1992) | Argentina | Spanish | Restream | 90s X-Men animated series | Working | `live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8` |
+| Delmi TV | Spain | Spanish | Restream | Anime and cartoons | Working | `live20.bozztv.com/giatvplayout7/giatv-210634/playlist.m3u8` |
+| Delmi Channel | Spain | Spanish | Restream | Anime and cartoons | Working | `live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8` |
+| EnerGeek | Chile | Spanish | Restream (token) | 80s/90s/2000s series and anime | Working | `cl-2.backend.energeek.cl/bkp/egretroweb/index.m3u8?token=S3r3noTV` |
+| EnerGeek Fan | Chile | Spanish | Restream (token) | Cartoons, anime, live-action and movies | Working | `cl-2.backend.energeek.cl/bkp/egfanweb/index.m3u8?token=S3r3noTV` |
+| Retro Cartoon | Brazil | Portuguese | Restream | 1940s-1980s classic cartoons | Working | `stmv1.video.brstream.com.br/retrotv/retrotv/playlist.m3u8` |
+| Otaku Sign TV | Brazil | Portuguese | Restream | Anime 24/7 | Working | `stmv1.srvif.com/anime/anime/playlist.m3u8` |
+| FilmRise Anime | United States | English | FAST channel | Anime movies and series | Working | `dvu7aia8rjlfm.cloudfront.net/master.m3u8` |
+| RetroCrush | United States | English | FAST channel | Retro anime | Working | `linear-899.frequency.stream/dist/cineverse/899/hls/master/playlist.m3u8` |
 
 Notes:
 
@@ -117,13 +130,26 @@ its schedule.
 
 ---
 
+## Fragility and fallbacks
+
+| Risk | Channels | Why | Fallback |
+| --- | --- | --- | --- |
+| High | Retro Magico, Retro Toons, Dragon Ball, X-Men, Delmi TV, Delmi Channel | Bozztv restreams rotate paths without notice | None; find a new URL in the source catalog |
+| High | EnerGeek, EnerGeek Fan | The URL carries a SerenoTV token that can expire | Refresh the token from SerenoTV |
+| Medium | Magic Kids OK, Canal Retro TV, Retro Cartoon, Otaku Sign TV | Small third-party hosts (`vdopanel`, `enlineatv`, `brstream`, `srvif`) | None |
+| Medium | Locomotion (primary) | Alternate feed hosted on `lbgo.bozztv.com` | Locomotion official entry |
+| Low | Pluto TV entries | Depend on the `jmp2.uk` redirector | Resolve the Pluto channel id through another endpoint |
+| Low | Tooncast | Third-party restream | The backup Tooncast entry |
+| Low | FilmRise Anime, RetroCrush | Commercial FAST endpoints (`cloudfront`, `frequency.stream`) | None |
+
 ## Verification helper
 
-The curation script followed this flow:
+Run the checker after any change:
 
-1. Fetch the URL.
-2. If it is a master playlist, pick a variant and fetch it again.
-3. Take the last segment from the media playlist.
-4. Download the segment and check that it contains real video data.
+```bash
+python3 scripts/verify_playlists.py
+```
 
-Channels that returned an empty segment, an HTML page or an HTTP error were discarded.
+It resolves each URL from the master playlist to a media playlist, downloads the last
+segment and reports whether it contains real media. See `docs/verification.md` for the full
+method, thresholds and manual fallback.

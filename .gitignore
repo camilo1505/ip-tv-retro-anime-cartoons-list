@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local agent notes and personal runbooks (never commit device or network details)
+AGENTS.local.md
+*.local.md
+
+# macOS
+.DS_Store

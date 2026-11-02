@@ -54,16 +54,28 @@ The lists do not embed an EPG URL. These are the guides used in practice:
 
 ```text
 .
+├── AGENTS.md
 ├── README.md
 ├── lists/
 │   ├── locomotion-anime.m3u
 │   ├── anime-extra.m3u
 │   └── retro-sereno.m3u
-└── docs/
-    └── sources.md
+├── docs/
+│   ├── sources.md
+│   ├── verification.md
+│   ├── owntv.md
+│   ├── troubleshooting.md
+│   └── decisions.md
+└── scripts/
+    └── verify_playlists.py
 ```
 
-`docs/sources.md` documents where every channel comes from, which ones are official and which ones are third-party restreams.
+- `docs/sources.md` documents where every channel comes from, which ones are official and which ones are third-party restreams.
+- `docs/verification.md` explains how to validate that a stream is alive.
+- `docs/owntv.md` covers the Android TV setup and its limits.
+- `docs/troubleshooting.md` lists known failure modes and fixes.
+- `docs/decisions.md` records why the lists are organised this way.
+- `AGENTS.md` is the quick operational contract for maintainers and AI agents.
 
 ## Notes and caveats
 
@@ -74,15 +86,21 @@ The lists do not embed an EPG URL. These are the guides used in practice:
 
 ## Maintenance
 
-Validate that every URL in a playlist still returns a media playlist and a real segment:
+Validate every URL in the playlists:
 
 ```bash
-python3 - <<'PY'
-# quick check: master -> variant -> last segment
-import concurrent.futures, urllib.parse, urllib.request
-# ...see docs/sources.md for the full script used during curation
-PY
+python3 scripts/verify_playlists.py
 ```
+
+Only one list:
+
+```bash
+python3 scripts/verify_playlists.py --list retro-sereno
+```
+
+The script resolves each master playlist to a media playlist, downloads the last segment
+and reports whether it contains real media. A 200 response alone is not proof; see
+[`docs/verification.md`](docs/verification.md).
 
 After editing a playlist:
 

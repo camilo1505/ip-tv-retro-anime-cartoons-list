@@ -1,0 +1,129 @@
+# Sources and channel notes
+
+Last full verification: **2026-11-02**.
+
+Method: every URL was resolved from the master playlist to a variant, then to a media
+playlist, and the last segment was downloaded. A channel is considered working when the
+segment is a real video segment (not an empty file, not an HTML error page).
+
+Group names in the playlists are in English; channel names are kept as published by each
+source.
+
+---
+
+## `lists/locomotion-anime.m3u` (14 channels)
+
+| # | Channel | Source | Status | Notes |
+| --- | --- | --- | --- | --- |
+| 1 | Locomotion | SerenoTV "Segunda señal" (`lbgo.bozztv.com`) | Working | Alternate live feed, 720p/30, ~4.3 Mbps, AAC. It is a different feed from the official one. |
+| 2 | Locomotion (official fallback) | `146.19.49.197:81/live/loco.m3u8` | Working, but loops | Official feed. All official variants share the same encoder, so they repeat the same day. Kept only as a fallback. |
+| 3 | AnimeZoneTV | `animezonetv.com/hls/stream.m3u8` | Working | Related to the Locomotion portal. |
+| 4 | Anime XTV | `animezonetv.net:81/live_hls/animetest/index.m3u8` | Working | Alternate server from the same project. |
+| 5 | Pluto TV Anime (LatAm) | `jmp2.uk/plu-5dcde17bf6591d0009839e02.m3u8` | Working | Official Pluto TV channel through the jmp2.uk redirector. |
+| 6 | One Piece (LatAm) | `jmp2.uk/plu-5ff4b9ccf938f8000779eb99.m3u8` | Working | Official Pluto TV channel. |
+| 7 | Naruto (Spanish) | `jmp2.uk/plu-5ee92e72fb286e0007285fec.m3u8` | Working | Official Pluto TV channel. |
+| 8 | Detective Conan | `jmp2.uk/plu-629a066860ef810008267b70.m3u8` | Working | Official Pluto TV channel. |
+| 9 | MAX Anime | `cdnlive.klicgo.net/maxanime/live/playlist.m3u8` | Working | Community channel. |
+| 10 | Tooncast | `45.134.141.161:2200/ARG/Tooncast/index.m3u8` | Working | Third-party restream. |
+| 11 | Tooncast (backup) | `190.61.42.218:9000/play/a06i/index.m3u8` | Working | Third-party restream. |
+| 12 | Nickelodeon Clásico | `jmp2.uk/plu-6824cda00101510f9eeaa011.m3u8` | Working | Official Pluto TV channel. |
+| 13 | Nickelodeon Toons (LatAm) | `jmp2.uk/plu-645952687cb4b100084ed52e.m3u8` | Working | Official Pluto TV channel. |
+| 14 | Cartoon Network (LatAm) | `158.172.217.18:8000/play/a03a/index.m3u8` | Working | Third-party restream. |
+
+### Locomotion background
+
+- The official playlist (`http://locomotiontv.com/envivo/xtv/m3u`) publishes four entries:
+  `51.222.85.85:81/hls/loco/index.m3u8` (returns **404**) and three variants on
+  `146.19.49.197:81` (`loco.m3u8`, `loco_hi`, `loco_low`).
+- Those three variants are the same multibitrate feed: the master playlist only lists
+  `loco_low`, `loco_mid` and `loco_hi`. That is why they show the same content at the same
+  time.
+- The feed repeats the same programming day in a loop, so the three entries were replaced
+  by one alternate signal plus one official fallback.
+- SerenoTV channel `25664` ("Canal Locomotion - Segunda señal") exposes a real live HLS
+  stream (`lbgo.bozztv.com`). At the time of comparison it was airing anime while the
+  official feed was showing a "be right back" card, which confirms they are different feeds.
+- SerenoTV channel `24791` ("Canal Locomotion") is **not** live HLS: it is a VOD playlist
+  (`transmision.mode = "lista"`) over `videos.gia.tv`, so it cannot be used as a single
+  channel.
+
+---
+
+## `lists/anime-extra.m3u` (7 channels)
+
+All channels are official Pluto TV feeds served through `jmp2.uk`:
+
+| Channel | Pluto channel id |
+| --- | --- |
+| ANIME x HIDIVE | `6793eaa4bc03978b9bc63db1` |
+| Pluto TV Anime Movies | `67ed8f7e443f0671bc2b2368` |
+| Pluto TV Anime CA | `68d25b620a0f3829b116bb6f` |
+| Pluto TV Anime Ação | `604b79c558393100078faeef` |
+| Naruto Shippuden | `64c92f965580090008084968` |
+| It's Anime | `6a4fda4538f47f0af402bdb0` |
+| Big A Anime | `6a3c5fa46276c42ac6726b27` |
+
+EPG: `https://i.mjh.nz/PlutoTV/us.xml`.
+
+---
+
+## `lists/retro-sereno.m3u` (15 channels)
+
+Third-party live HLS restreams found through the SerenoTV catalog. SerenoTV is only the
+directory: the playlists point directly at the CDN that serves each channel (mostly
+`bozztv`, plus `vdopanel`, `enlineatv`, `energeek`, `brstream`, `srvif`, `cloudfront` and
+`frequency.stream`). They were verified with a real segment at the time of writing, but
+they are community streams and can disappear.
+
+| Channel | Country | Language | Content | URL |
+| --- | --- | --- | --- | --- |
+| Retro Magico | Argentina | Spanish | 80s/90s cartoons, a tribute to Magic Kids | `live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8` |
+| Retro Toons | Argentina | Spanish | Retro cartoons | `183.bozztv.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8` |
+| Clasicos Animados | Costa Rica | Spanish | 80s/90s animated series | `live20.bozztv.com/giatvplayout7/giatv-209599/index.m3u8` |
+| Magic Kids OK | Argentina | Spanish | Argentine kids channel, nostalgic | `kali.vdopanel.com:3957/stream/play.m3u8` |
+| Canal Retro TV | Costa Rica | Spanish | Retro programming in Spanish | `stream.enlineatv.net/hls/retrotv/index.m3u8` |
+| Dragon Ball | Costa Rica | Spanish | Dragon Ball Z 24/7 | `live20.bozztv.com/giatv/giatv-dball/dball/playlist.m3u8` |
+| X-Men (1992) | Argentina | Spanish | 90s X-Men animated series | `live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8` |
+| Delmi TV | Spain | Spanish | Anime and cartoons | `live20.bozztv.com/giatvplayout7/giatv-210634/playlist.m3u8` |
+| Delmi Channel | Spain | Spanish | Anime and cartoons | `live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8` |
+| EnerGeek | Chile | Spanish | 80s/90s/2000s series and anime | `cl-2.backend.energeek.cl/bkp/egretroweb/index.m3u8?token=S3r3noTV` |
+| EnerGeek Fan | Chile | Spanish | Cartoons, anime, live-action and movies | `cl-2.backend.energeek.cl/bkp/egfanweb/index.m3u8?token=S3r3noTV` |
+| Retro Cartoon | Brazil | Portuguese | 1940s-1980s classic cartoons | `stmv1.video.brstream.com.br/retrotv/retrotv/playlist.m3u8` |
+| Otaku Sign TV | Brazil | Portuguese | Anime 24/7 | `stmv1.srvif.com/anime/anime/playlist.m3u8` |
+| FilmRise Anime | United States | English | Anime movies and series | `dvu7aia8rjlfm.cloudfront.net/master.m3u8` |
+| RetroCrush | United States | English | Retro anime | `linear-899.frequency.stream/dist/cineverse/899/hls/master/playlist.m3u8` |
+
+Notes:
+
+- The EnerGeek URLs include a SerenoTV token (`token=S3r3noTV`). If the channel stops
+  working, the token may have expired and needs to be refreshed from SerenoTV.
+- Portuguese and English channels are grouped separately (`Portuguese`, `English`) so the
+  Spanish audio lists stay easy to browse.
+- Premium SerenoTV channels (Anime Shock, Anime Presente 2, Macross 24h, Tom & Jerry,
+  Dinosaurios, Retro BIG, Ninjala, Pop Japones) require an account and are not included.
+
+---
+
+## EPG reference
+
+| Guide | URL |
+| --- | --- |
+| Pluto TV Mexico | `https://i.mjh.nz/PlutoTV/mx.xml` |
+| Pluto TV United States | `https://i.mjh.nz/PlutoTV/us.xml` |
+| Locomotion official | `http://epg.locomotiontv.com/guia.xml` |
+
+The alternate Locomotion signal has no EPG of its own, so the official guide may not match
+its schedule.
+
+---
+
+## Verification helper
+
+The curation script followed this flow:
+
+1. Fetch the URL.
+2. If it is a master playlist, pick a variant and fetch it again.
+3. Take the last segment from the media playlist.
+4. Download the segment and check that it contains real video data.
+
+Channels that returned an empty segment, an HTML page or an HTTP error were discarded.

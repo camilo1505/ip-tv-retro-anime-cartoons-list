@@ -1,0 +1,35 @@
+#EXTM3U
+# Retro & Anime (SerenoTV catalog) - 15 live channels
+# Streams are direct CDN links (mostly Bozztv), not proxied through SerenoTV.
+# Source notes: docs/sources.md
+
+#EXTINF:-1 tvg-name="Retro Magico" group-title="Retro Cartoons",Retro Magico
+https://live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8
+#EXTINF:-1 tvg-name="Retro Toons" group-title="Retro Cartoons",Retro Toons
+https://183.bozztv.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8
+#EXTINF:-1 tvg-name="Clasicos Animados" group-title="Retro Cartoons",Clasicos Animados
+https://live20.bozztv.com/giatvplayout7/giatv-209599/index.m3u8
+#EXTINF:-1 tvg-name="Magic Kids OK" group-title="Retro Cartoons",Magic Kids OK
+https://kali.vdopanel.com:3957/stream/play.m3u8
+#EXTINF:-1 tvg-name="Canal Retro TV" group-title="Retro Cartoons",Canal Retro TV
+https://stream.enlineatv.net/hls/retrotv/index.m3u8
+#EXTINF:-1 tvg-name="Dragon Ball" group-title="Retro Anime",Dragon Ball
+https://live20.bozztv.com/giatv/giatv-dball/dball/playlist.m3u8
+#EXTINF:-1 tvg-name="X-Men (1992)" group-title="Retro Anime",X-Men (1992)
+https://live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8
+#EXTINF:-1 tvg-name="Delmi TV" group-title="Anime",Delmi TV
+https://live20.bozztv.com/giatvplayout7/giatv-210634/playlist.m3u8
+#EXTINF:-1 tvg-name="Delmi Channel" group-title="Anime",Delmi Channel
+https://live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8
+#EXTINF:-1 tvg-name="EnerGeek" group-title="Anime",EnerGeek
+https://cl-2.backend.energeek.cl/bkp/egretroweb/index.m3u8?token=S3r3noTV
+#EXTINF:-1 tvg-name="EnerGeek Fan" group-title="Anime",EnerGeek Fan
+https://cl-2.backend.energeek.cl/bkp/egfanweb/index.m3u8?token=S3r3noTV
+#EXTINF:-1 tvg-name="Retro Cartoon" group-title="Portuguese",Retro Cartoon
+https://stmv1.video.brstream.com.br/retrotv/retrotv/playlist.m3u8
+#EXTINF:-1 tvg-name="Otaku Sign TV" group-title="Portuguese",Otaku Sign TV
+https://stmv1.srvif.com/anime/anime/playlist.m3u8
+#EXTINF:-1 tvg-name="FilmRise Anime" group-title="English",FilmRise Anime
+https://dvu7aia8rjlfm.cloudfront.net/master.m3u8
+#EXTINF:-1 tvg-name="RetroCrush" group-title="English",RetroCrush
+https://linear-899.frequency.stream/dist/cineverse/899/hls/master/playlist.m3u8

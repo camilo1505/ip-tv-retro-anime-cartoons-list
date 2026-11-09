@@ -59,15 +59,20 @@ Workstation (intermittent)
 ```text
 MOSS-Image SFT (INT8)      → backgrounds, cards, idents with rendered text
   (use layout/bounding-box templates — strong native text-in-image)
-LTX-Video or Wan 2.1 1.3B GGUF → animate 3-5 s idents (image-to-video)
+Wan 2.2 TI2V-5B GGUF       → animate 3-5 s idents (image-to-video)
+  + LightX2V 4-step LoRA (fast); RIFE node interpolates to 24/30 fps
 DaVinci Resolve            → typography, stingers, voice-over, final MP4
   → copy to /pautas on the mini PC
 ```
 
-- 8 GB VRAM rules: the 14B video models are out; quantized LTX/Wan-1.3B and AnimateDiff
-  are in. Keep motion simple — classic idents are mostly type + simple moves.
-- Voice-over: XTTS v2 or F5-TTS run locally in Spanish; choose one during
-  implementation and keep the other as fallback.
+- 8 GB VRAM rules: Wan 2.2 5B GGUF is the workhorse (official ComfyUI workflow targets
+  8 GB; GGUF quants via ComfyUI-GGUF). LTX-2.x (2.3/2.5, open weights, native ComfyUI)
+  is worth testing for synced audio+video idents, but the 22B fp8 checkpoint is tight on
+  8 GB — check for community GGUF quants first. 14B models and AnimateDiff are out.
+- Voice-over: Qwen3-TTS (Apache 2.0, actively maintained; clones from a 3 s clip and has
+  a VoiceDesign mode to invent the channel announcer) is the pick. Kokoro 82M for instant
+  no-cloning drafts; XTTS v2 as fallback (non-commercial weights, acceptable for personal
+  use).
 - LoRA/DMD turbo (8-step) presets for fast iteration on MOSS-Image.
 
 ## Quality policy

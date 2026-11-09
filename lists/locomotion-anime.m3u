@@ -1,15 +1,12 @@
 #EXTM3U
-# Locomotion + Anime - 14 channels
+# Locomotion + Anime - 12 channels
+# Verified 2026-11-09: 11 ok, 1 temporarily down (Locomotion official fallback, HTTP 404).
+# The bozztv primary signal died with the bozztv.com domain (DNS removed).
+# AnimeZoneTV answers "Access Denied!" and was removed.
 # Source notes: docs/sources.md
-
-#EXTINF:-1 tvg-name="Locomotion" tvg-id="Locomotion" tvg-logo="http://locomotiontv.com/locomotion/logo.png" group-title="Locomotion",Locomotion
-https://lbgo.bozztv.com/ssh101/ssh101/myevent2025/playlist.m3u8
 
 #EXTINF:-1 tvg-name="Locomotion Respaldo" tvg-logo="http://locomotiontv.com/locomotion/logo.png" group-title="Locomotion",Locomotion (respaldo oficial)
 http://146.19.49.197:81/live/loco.m3u8
-
-#EXTINF:-1 tvg-name="AnimeZoneTV" tvg-id="AZTV" tvg-logo="http://locomotiontv.com/locomotion/aztv_logo.png" group-title="Anime",AnimeZoneTV
-http://animezonetv.com/hls/stream.m3u8
 
 #EXTINF:-1 tvg-name="Anime XTV" tvg-id="animextv" tvg-logo="http://locomotiontv.com/locomotion/aztv_logo.png" group-title="Anime",Anime XTV
 http://animezonetv.net:81/live_hls/animetest/index.m3u8

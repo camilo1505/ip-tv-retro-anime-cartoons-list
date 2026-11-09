@@ -10,9 +10,9 @@ The playlists are plain text files served from this repository, so they can be i
 
 | Playlist | Channels | Content |
 | --- | --- | --- |
-| [`lists/locomotion-anime.m3u`](lists/locomotion-anime.m3u) | 14 | Locomotion, anime and cartoon channels used as the main list |
+| [`lists/locomotion-anime.m3u`](lists/locomotion-anime.m3u) | 12 | Locomotion, anime and cartoon channels used as the main list |
 | [`lists/anime-extra.m3u`](lists/anime-extra.m3u) | 7 | Pluto TV anime channels |
-| [`lists/retro-sereno.m3u`](lists/retro-sereno.m3u) | 15 | Retro cartoons and anime (Spanish, Portuguese and English) found through the SerenoTV catalog |
+| [`lists/retro-sereno.m3u`](lists/retro-sereno.m3u) | 10 | Retro cartoons and anime (Spanish, Portuguese and English), originally found through the SerenoTV catalog |
 
 ### Raw URLs
 

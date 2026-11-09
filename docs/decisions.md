@@ -45,6 +45,13 @@ Locomotion entry, and keep one official URL as a fallback.
 **Consequences.** Locomotion shows different content from the official loop, but depends on
 a third-party restream that can disappear. The official fallback is stable but repetitive.
 
+**Update 2026-11-09.** The alternate signal died with the `bozztv.com` domain, and the
+official feed started returning 404 on every variant. Interim state: only the official
+fallback entry remains, marked as temporarily down; the TV recovers it automatically when
+the feed returns. The primary/fallback split will be re-evaluated if a new alternate
+signal shows up, and the recovered feed must be checked for the day-loop or the
+"volveremos pronto" holding card before it is recorded as `Working`.
+
 ---
 
 ## ADR-004: No adult content

@@ -68,12 +68,44 @@ If the token expired, both channels fail at the same time. Refresh the token fro
 SerenoTV catalog and update both entries, or remove the channels until a new token is
 available.
 
+## Several unrelated channels fail at once with DNS errors
+
+Symptom: the verifier reports `network error: nodename nor servname provided, or not
+known` for channels that share nothing except their host.
+
+1. Check the host against several resolvers:
+
+```bash
+dig +short @8.8.8.8 live20.bozztv.com
+dig +short @1.1.1.1 live20.bozztv.com
+```
+
+2. If none resolves, the domain itself is gone (this happened to the whole `bozztv.com`
+   domain on 2026-11-09, killing six restreams overnight). No path fix helps.
+3. Remove the affected entries, look for new URLs in the original catalog (SerenoTV) and
+   verify each candidate before adding it.
+
+## A stream verifies OK but shows a static card
+
+The HLS check only proves that playlists and video segments download. It cannot tell
+programming from a slate. The official Locomotion feed, for example, shows a
+"Sentimos los inconvenientes / volveremos pronto" holding card at times, and the
+verifier still reports `OK` because the card is a real video segment.
+
+- Play the channel in VLC for a minute before recording it as `Working`.
+- Record the state in `docs/sources.md`: real programming, day-loop or holding card.
+
 ## Locomotion repeats the same programming day
 
 This is expected. The official Locomotion feed publishes several variants that share the
-same encoder, and the feed loops. The playlist uses an alternate live signal as the primary
-entry and keeps the official one only as a fallback. Do not "fix" the loop by adding more
-official variants: they all show the same thing.
+same encoder, and the feed loops. Do not "fix" the loop by adding more official variants:
+they all show the same thing.
+
+Since 2026-11-09 the playlist only has the official entry (the alternate signal died with
+the bozztv domain), and that entry returns HTTP 404 while Locomotion keeps its encoders
+down. The entry is kept so the TV recovers it automatically on the next 12-hour refresh
+once the feed returns. When it does, check which state it is in (loop, holding card or
+live) before recording the status.
 
 ## A channel buffers every few seconds
 

@@ -1,26 +1,19 @@
 #EXTM3U
-# Retro & Anime (SerenoTV catalog) - 15 live channels
-# Streams are direct CDN links (mostly Bozztv), not proxied through SerenoTV.
+# Retro & Anime - 10 live channels (Spanish, Portuguese, English)
+# Verified 2026-11-09: all 10 ok.
+# The bozztv restreams (Retro Magico, Retro Toons, Clasicos Animados, X-Men,
+# Delmi TV, Delmi Channel) died with the bozztv.com domain and were removed.
+# Dragon Ball now uses the official Pluto TV feeds through jmp2.uk.
 # Source notes: docs/sources.md
 
-#EXTINF:-1 tvg-name="Retro Magico" group-title="Retro Cartoons",Retro Magico
-https://live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8
-#EXTINF:-1 tvg-name="Retro Toons" group-title="Retro Cartoons",Retro Toons
-https://183.bozztv.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8
-#EXTINF:-1 tvg-name="Clasicos Animados" group-title="Retro Cartoons",Clasicos Animados
-https://live20.bozztv.com/giatvplayout7/giatv-209599/index.m3u8
 #EXTINF:-1 tvg-name="Magic Kids OK" group-title="Retro Cartoons",Magic Kids OK
 https://kali.vdopanel.com:3957/stream/play.m3u8
 #EXTINF:-1 tvg-name="Canal Retro TV" group-title="Retro Cartoons",Canal Retro TV
 https://stream.enlineatv.net/hls/retrotv/index.m3u8
-#EXTINF:-1 tvg-name="Dragon Ball" group-title="Retro Anime",Dragon Ball
-https://live20.bozztv.com/giatv/giatv-dball/dball/playlist.m3u8
-#EXTINF:-1 tvg-name="X-Men (1992)" group-title="Retro Anime",X-Men (1992)
-https://live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8
-#EXTINF:-1 tvg-name="Delmi TV" group-title="Anime",Delmi TV
-https://live20.bozztv.com/giatvplayout7/giatv-210634/playlist.m3u8
-#EXTINF:-1 tvg-name="Delmi Channel" group-title="Anime",Delmi Channel
-https://live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8
+#EXTINF:-1 tvg-name="Dragon Ball Z" tvg-id="68e8fd7c3ede4398bc69af93" tvg-logo="https://images.pluto.tv/channels/68e8fd7c3ede4398bc69af93/colorLogoPNG.png" group-title="Retro Anime",Dragon Ball Z (Pluto TV)
+https://jmp2.uk/plu-68e8fd7c3ede4398bc69af93.m3u8
+#EXTINF:-1 tvg-name="Dragon Ball" tvg-id="685a996c7c4f2ad40cb4f276" tvg-logo="https://images.pluto.tv/channels/685a996c7c4f2ad40cb4f276/colorLogoPNG.png" group-title="Retro Anime",Dragon Ball (Pluto TV)
+https://jmp2.uk/plu-685a996c7c4f2ad40cb4f276.m3u8
 #EXTINF:-1 tvg-name="EnerGeek" group-title="Anime",EnerGeek
 https://cl-2.backend.energeek.cl/bkp/egretroweb/index.m3u8?token=S3r3noTV
 #EXTINF:-1 tvg-name="EnerGeek Fan" group-title="Anime",EnerGeek Fan

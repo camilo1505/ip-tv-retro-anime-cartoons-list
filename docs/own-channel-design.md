@@ -23,6 +23,11 @@ bumpers, transitions and promos.
 Quick Sync does the transcoding on the mini PC; no GPU needed there. The 3070 Ti stays
 in the workstation as the render farm.
 
+RAM: 16 GB is comfortable headroom, not a requirement — the whole stack (OS, Docker,
+ErsatzTV, 2 ffmpeg sessions) peaks around 4 GB. Buy 32 GB only if the mini PC will
+co-locate extra services (Jellyfin, Home Assistant, *arr stack, monitoring); otherwise the
+money is better spent on NVMe capacity.
+
 Storage sizing (channel bitrate): 480p ≈ 0.8-1 GB/h, 720p ≈ 1.5-1.8 GB/h, 1080p ≈ 2 GB/h.
 A 1 TB NVMe holds roughly 700-1000 hours.
 

@@ -18,13 +18,50 @@ bumpers, transitions and promos.
 | Machine | Role | Spec |
 | --- | --- | --- |
 | New mini PC | 24/7 playout server | Intel N100/N150 (Quick Sync), 16 GB RAM, 512 GB-1 TB NVMe, Ethernet, auto power-on in BIOS. ~15-25 W. |
-| Existing workstation | Pautas factory | RTX 3070 Ti 8 GB, ComfyUI with MOSS-Image SFT INT8 ConvRot. |
+| Existing workstation | Pautas factory | AMD Ryzen 5 5600X (6C/12T), 32 GB RAM, RTX 3070 Ti 8 GB (driver 595.112.07), Gigabyte B550 AORUS ELITE AX V2, 1 TB NVMe (root) + 512 GB NVMe + 1 TB HDD, Ethernet (eno1, 1 Gb/s, wired to the Hitron CGNV5UNE ONT) + Wi-Fi (wlp6s0), Nobara Linux 44 KDE (kernel 7.3.1), ComfyUI with MOSS-Image SFT INT8 ConvRot. |
 
 Quick Sync does the transcoding on the mini PC; no GPU needed there. The 3070 Ti stays
 in the workstation as the render farm.
 
-RAM: 16 GB is comfortable headroom, not a requirement — the whole stack (OS, Docker,
-ErsatzTV, 2 ffmpeg sessions) peaks around 4 GB. Buy 32 GB only if the mini PC will
+The workstation is already provisioned for the factory role: 32 GB RAM covers ComfyUI plus
+DaVinci Resolve at the same time, and the spare 512 GB NVMe plus the 1 TB HDD give scratch
+space for batch QTGMC deinterlacing and optional upscaling without touching the system
+drive. No hardware upgrade is required before the first pautas.
+
+### LAN topology (measured 2026-11-12)
+
+The ISP gateway is a **Hitron CGNV5UNE** (Tigo UNE, DOCSIS 3.0) at `192.168.1.254`. It is
+gigabit: **4× RJ-45 10/100/1000 LAN ports**, Wi-Fi 6 (2×2 2.4 GHz + 2×2 5 GHz), 960 Mbps
+down / 240 Mbps up on the DOCSIS side. It is the **only router and the only NAT**.
+
+```text
+Hitron CGNV5UNE (router, DHCP, 192.168.1.0/24)
+├─ port 1 ── workstation        eno1, 1000 Mb/s
+├─ port 2 ── mini PC (pending)  target 1000 Mb/s
+├─ port 3 ── spare
+├─ Wi-Fi  ── FAMILIA_GIRALDO_5G (built-in 5 GHz)
+└─ extender ─ Xiaomi 4A, wireless relay, same subnet, no NAT
+```
+
+- **Workstation:** RTL8125 2.5GbE on `eno1`, trains at **1000 Mb/s**; internet measures
+  **~250-400 Mbps** across runs (server-side variance dominates). Before the re-cable the
+  same machine sat behind the Xiaomi at 100 Mb/s and measured ~84 Mbps.
+- **Xiaomi Mi Router 4A** (`R4ACv2`, 100M ports) is **out of the wired path**, demoted to a
+  wireless extender (SSID `CCGAX4D35_5G`, `192.168.1.184`). It no longer NATs, so there is
+  one subnet and one NAT hop — `traceroute` shows a single hop to `192.168.1.254`. Its 100M
+  ports now only affect devices plugged into it: keep wired clients off it.
+- **Mini PC goes on ONT port 2.** Two of the four gigabit ports are free, so workstation ↔
+  mini PC runs at 1 Gb/s (~110 MB/s) with no extra hardware. A 500 MB pauta copies in ~5 s
+  instead of ~45 s.
+- **No switch and no new router are required.** Both were costed against the old 100M path;
+  the ONT already provides what they were going to buy. A 2.5G switch would gain nothing,
+  since the ONT's LAN ports are gigabit.
+- **Minor cleanup:** the workstation still holds a Wi-Fi lease on the same subnet
+  (`192.168.1.147`). Harmless with route metrics in place, but `nmcli radio wifi off`
+  removes the duplicate path.
+
+Mini PC RAM: 16 GB is comfortable headroom, not a requirement — the whole stack (OS,
+Docker, ErsatzTV, 2 ffmpeg sessions) peaks around 4 GB. Buy 32 GB only if the mini PC will
 co-locate extra services (Jellyfin, Home Assistant, *arr stack, monitoring); otherwise the
 money is better spent on NVMe capacity.
 

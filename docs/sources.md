@@ -1,6 +1,6 @@
 # Sources and channel notes
 
-Last full verification: **2026-11-09**.
+Last full verification: **2026-11-24**.
 
 Method: every URL was resolved from the master playlist to a variant, then to a media
 playlist, and the last segment was downloaded. A channel is considered working when the
@@ -21,7 +21,91 @@ source.
 
 ---
 
-## `lists/locomotion-anime.m3u` (12 channels)
+## `lists/all-channels.m3u` (37 channels) — consolidated list
+
+Created on **2026-11-24**. It merges `locomotion-anime.m3u`, `anime-extra.m3u` and
+`retro-sereno.m3u` into a single source, keeping every working channel and their group
+structure. The per-theme files stay in the repository because players hold their raw URLs,
+but they are no longer the recommended import.
+
+Verification (2026-11-24): **36 OK, 1 failing** (`Retro Cartoon`, upstream host unreachable).
+
+Removed while consolidating:
+
+| Channel | Reason |
+| --- | --- |
+| Locomotion (official fallback) | `146.19.49.197:81/live/loco.m3u8` keeps answering **HTTP 404** since 2026-11-09. The alternate signal is gone with `bozztv.com` and the official feed has not come back. |
+
+### bozztv → giatvcdn recovery
+
+The six channels dropped on 2026-11-09 when `bozztv.com` stopped resolving are alive again
+on **`183.giatvcdn.com`**, the CDN that used to serve those bozztv paths. The paths are
+identical, only the host changed, so they were re-added to the consolidated list:
+
+| Channel | URL now | Old bozztv path |
+| --- | --- | --- |
+| Retro Mágico | `183.giatvcdn.com/ssh101/ssh101/retromagicocnl/chunks.m3u8` | `live20.bozztv.com/akamaissh101/ssh101/retromagicocnl/chunks.m3u8` |
+| Retro Toons | `183.giatvcdn.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8` | `183.bozztv.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8` |
+| Clásicos Animados | `183.giatvcdn.com/giatvplayout7/giatv-209599/index.m3u8` | `live20.bozztv.com/giatvplayout7/giatv-209599/index.m3u8` |
+| X-Men (1992) | `183.giatvcdn.com/giatvplayout7/giatv-210703/playlist.m3u8` | `live20.bozztv.com/giatvplayout7/giatv-210703/playlist.m3u8` |
+| Delmi TV | `183.giatvcdn.com/giatvplayout7/giatv-210634/playlist.m3u8` | `live20.bozztv.com/giatvplayout7/giatv-210634/playlist.m3u8` |
+| Delmi | `183.giatvcdn.com/giatvplayout7/giatv-209474/playlist.m3u8` | `live20.bozztv.com/giatvplayout7/giatv-209474/playlist.m3u8` (was "Delmi Channel") |
+
+### Channels added from the SerenoTV catalog
+
+| Channel | Country | Language | Type | Content | Status (2026-11-24) | URL |
+| --- | --- | --- | --- | --- | --- | --- |
+| Retro Mágico | Argentina | Spanish | Restream | 80s/90s cartoons, a Magic Kids homage | Working | `183.giatvcdn.com/ssh101/ssh101/retromagicocnl/chunks.m3u8` |
+| Retro Toons | Argentina | Spanish | Restream | Retro cartoons | Working | `183.giatvcdn.com/giatv/giatv-Retrotoonstv/Retrotoonstv/chunks.m3u8` |
+| Clásicos Animados | Costa Rica | Spanish | Restream | 80s/90s animated series | Working | `183.giatvcdn.com/giatvplayout7/giatv-209599/index.m3u8` |
+| X-Men (1992) | Argentina | Spanish | Restream | X-Men: The Animated Series 24/7 | Working | `183.giatvcdn.com/giatvplayout7/giatv-210703/playlist.m3u8` |
+| Delmi TV | Spain | Spanish | Restream | Anime and cartoons | Working | `183.giatvcdn.com/giatvplayout7/giatv-210634/playlist.m3u8` |
+| Delmi | Spain | Spanish | Restream | Anime and cartoons | Working | `183.giatvcdn.com/giatvplayout7/giatv-209474/playlist.m3u8` |
+| Delmi Galicia | Spain | Galician | Restream | Delmi feed dubbed in Galician | Working | `183.giatvcdn.com/giatvplayout7/giatv-210596/playlist.m3u8` |
+| Canal Dragon Ball | Costa Rica | Spanish | Restream | Dragon Ball universe 24/7 | Working | `183.giatvcdn.com/giatv/giatv-dball/dball/playlist.m3u8` |
+| Mr. Bean Anime | Spain | Spanish | FAST channel (Rakuten TV) | Mr. Bean: The Animated Series | Working | `amg00627-...-rakuten-es-3990.playouts.now.amagi.tv/playlist/.../playlist.m3u8` |
+
+Notes:
+
+- The `giatvcdn` hosts are the same encoder farm that fed the bozztv restreams, so **expect
+  the same fragility**: they rotate paths and can drop a channel without notice. They are
+  the most likely entries to break next.
+- `Delmi Galicia` is in Galician, not Spanish. It is kept because it is the same Delmi
+  pack, but it is grouped under `Anime` and labelled `(galego)` in the playlist.
+- `Canal Dragon Ball` overlaps with the two official Pluto TV Dragon Ball feeds. It is a
+  restream, kept as a fallback for when `jmp2.uk` is down.
+- `Retro Cartoon` (Portuguese) timed out on 2026-11-24 from the verification machine.
+  The entry is kept with a warning comment; re-check before declaring it dead.
+
+### Channels deliberately not added
+
+SerenoTV also lists local/regional channels tagged `dibujos-caricaturas` that are really
+generalist stations (Canal 3 Visión, Ecotel TV, Unitv, Visión Dorada, NICA PLUS, Quantum,
+TL+ and similar), plus `Canal wow` (movies). They are out of scope.
+
+Nine anime channels in the same catalog are **premium** (Anime Shock, Anime Presente 2,
+Macross 24h, Tom & Jerry, Dinosaurios, Retro BIG, Ninjala, Pop Japones): they require a
+SerenoTV account and are not included.
+
+### SerenoTV "Canal Locomotion" has no HLS feed
+
+`https://serenotv.com/canal/canal-locomotion/` cannot be used in OwnTV. Confirmed on
+2026-11-24 through the site's AJAX endpoint (`cdm_canal_data`, pid `24791`):
+
+- `stream_tipo` is not `hls` and the site publishes no `.m3u8` for it;
+- `transmision.mode = "lista"`: the page syncs a **rotating list of MP4 files** against
+  `start_utc` and plays them sequentially, so the channel only exists inside that page;
+- its `url` field points to `serenotv.com/playlist-locomotion6/test-playlist.html`, which
+  now returns **404**.
+
+The sibling channel `Canal Locomotion 90` (pid `36846`) *does* expose a real HLS playlist
+through `p2p.giatvcdn.com/embed/locomotion90` →
+`https://serenotv.com/canal-prueba/prueba.m3u8` (verified: 200, live window, 654 KB
+`video/mpegts` segment). It was offered and declined on 2026-11-24; re-add it if wanted.
+
+---
+
+## `lists/locomotion-anime.m3u` (12 channels) — legacy, merged into `all-channels.m3u`
 
 | # | Channel | Language | Type | Source | Status (2026-11-09) | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -82,7 +166,7 @@ the list. Re-add AnimeZoneTV only if the block is lifted.
 
 ---
 
-## `lists/anime-extra.m3u` (7 channels)
+## `lists/anime-extra.m3u` (7 channels) — legacy, merged into `all-channels.m3u`
 
 All channels are official Pluto TV feeds served through `jmp2.uk`:
 
@@ -103,7 +187,7 @@ EPG: `https://i.mjh.nz/PlutoTV/us.xml`.
 
 ---
 
-## `lists/retro-sereno.m3u` (10 channels)
+## `lists/retro-sereno.m3u` (10 channels) — legacy, merged into `all-channels.m3u`
 
 Third-party live HLS channels originally found through the SerenoTV catalog. SerenoTV is
 only the directory: the playlists point directly at the CDN that serves each channel

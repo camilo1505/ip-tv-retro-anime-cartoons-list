@@ -14,13 +14,15 @@ document explains how the sources are configured and what the app can and cannot
 7. Start the import.
 8. Pick the list from the selector at the top of the **Live TV** screen.
 
-The three sources currently expected are:
+The single source currently expected is:
 
 | Name | File | Channels |
 | --- | --- | --- |
-| `Locomotion + Anime` | `lists/locomotion-anime.m3u` | 14 |
-| `Anime extra` | `lists/anime-extra.m3u` | 7 |
-| `Retro Anime Sereno` | `lists/retro-sereno.m3u` | 15 |
+| `Retro Anime & Cartoons` | `lists/all-channels.m3u` | 37 |
+
+The three per-theme lists (`locomotion-anime`, `anime-extra`, `retro-sereno`) are legacy:
+they were merged into `all-channels.m3u` on 2026-11-24 and should not be added again, or
+every channel will show up twice.
 
 Names are cosmetic; the important part is the URL.
 
@@ -89,8 +91,8 @@ After adding or resyncing a source:
 
 1. Open **Live TV**.
 2. Check the channel count in the header. It should equal the sum of the imported lists
-   (currently 36 channels with all three sources).
-3. Open one channel from each source and confirm it starts playing.
+   (currently 37 channels with the consolidated source).
+3. Open one channel from each group and confirm it starts playing.
 4. If a channel fails, test its URL with the verification script before editing the TV.
 
 ## Updating the repository without touching the TV

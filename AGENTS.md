@@ -54,9 +54,10 @@ that they are meant to be public.
 ├── AGENTS.md                  # this file
 ├── README.md                  # user-facing overview
 ├── lists/
-│   ├── locomotion-anime.m3u   # 14 channels: Locomotion, anime, cartoons
-│   ├── anime-extra.m3u        # 7 Pluto TV anime channels
-│   └── retro-sereno.m3u       # 15 retro/anime channels (ES, PT, EN)
+│   ├── all-channels.m3u       # 37 channels: consolidated list (import this one)
+│   ├── locomotion-anime.m3u   # 12 channels: legacy, merged into all-channels
+│   ├── anime-extra.m3u        # 7 Pluto TV anime channels: legacy, merged
+│   └── retro-sereno.m3u       # 10 retro/anime channels: legacy, merged
 ├── docs/
 │   ├── sources.md             # per-channel origin, status and caveats
 │   ├── verification.md        # how to validate streams
@@ -94,8 +95,9 @@ a segment, and record the verification date in `docs/sources.md`.
 
 ## Known fragility
 
-- **Bozztv restreams** (`live20.bozztv.com`, `183.bozztv.com`, `lbgo.bozztv.com`) rotate
-  URLs without notice. They are the most likely channels to break.
+- **giatvcdn restreams** (`183.giatvcdn.com`, formerly served through the dead
+  `bozztv.com` domain) rotate URLs without notice. They are the most likely channels to
+  break.
 - **EnerGeek** URLs depend on a SerenoTV token. If both EnerGeek channels fail at once,
   suspect the token before the CDN.
 - **Locomotion official feed** repeats the same programming day in a loop. The preferred

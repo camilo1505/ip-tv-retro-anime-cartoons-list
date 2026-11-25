@@ -10,15 +10,20 @@ The playlists are plain text files served from this repository, so they can be i
 
 | Playlist | Channels | Content |
 | --- | --- | --- |
-| [`lists/locomotion-anime.m3u`](lists/locomotion-anime.m3u) | 12 | Locomotion, anime and cartoon channels used as the main list |
-| [`lists/anime-extra.m3u`](lists/anime-extra.m3u) | 7 | Pluto TV anime channels |
-| [`lists/retro-sereno.m3u`](lists/retro-sereno.m3u) | 10 | Retro cartoons and anime (Spanish, Portuguese and English), originally found through the SerenoTV catalog |
+| [`lists/all-channels.m3u`](lists/all-channels.m3u) | 37 | **Consolidated list**: every anime, cartoon and retro channel, grouped by theme. This is the one to import. |
+| [`lists/locomotion-anime.m3u`](lists/locomotion-anime.m3u) | 12 | Legacy per-theme list (anime and cartoons). Superseded by `all-channels.m3u` |
+| [`lists/anime-extra.m3u`](lists/anime-extra.m3u) | 7 | Legacy per-theme list (Pluto TV anime). Superseded by `all-channels.m3u` |
+| [`lists/retro-sereno.m3u`](lists/retro-sereno.m3u) | 10 | Legacy per-theme list (retro, Spanish/Portuguese/English). Superseded by `all-channels.m3u` |
+
+The legacy lists stay in place because players hold their raw URLs: removing a file
+silently breaks any source still pointing at it.
 
 ### Raw URLs
 
 Replace `main` with the branch you want to use if it ever changes.
 
 ```text
+https://raw.githubusercontent.com/camilo1505/ip-tv-retro-anime-cartoons-list/main/lists/all-channels.m3u
 https://raw.githubusercontent.com/camilo1505/ip-tv-retro-anime-cartoons-list/main/lists/locomotion-anime.m3u
 https://raw.githubusercontent.com/camilo1505/ip-tv-retro-anime-cartoons-list/main/lists/anime-extra.m3u
 https://raw.githubusercontent.com/camilo1505/ip-tv-retro-anime-cartoons-list/main/lists/retro-sereno.m3u
@@ -30,11 +35,12 @@ https://raw.githubusercontent.com/camilo1505/ip-tv-retro-anime-cartoons-list/mai
 
 1. Open **Settings → Sources & guide → Playlists → Add source**.
 2. Choose **M3U / M3U8**.
-3. Paste one of the raw URLs above.
+3. Paste the raw URL of `lists/all-channels.m3u` (the other lists are legacy).
 4. Set **Auto refresh** to `12 hours`.
 5. Start the import, then pick the list from the selector at the top of the screen.
 
-Keep only the lists you actually watch marked as visible; the selector lets you switch between them without mixing groups.
+One source is enough: the consolidated list already groups channels by theme
+(`Anime`, `Retro Anime`, `Cartoons`, `Retro Cartoons`, `Portuguese`, `English`).
 
 ### Any other player
 
@@ -57,6 +63,7 @@ The lists do not embed an EPG URL. These are the guides used in practice:
 ├── AGENTS.md
 ├── README.md
 ├── lists/
+│   ├── all-channels.m3u
 │   ├── locomotion-anime.m3u
 │   ├── anime-extra.m3u
 │   └── retro-sereno.m3u
